@@ -1,0 +1,43 @@
+.card-stat {
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.bg-gradient-to-r {
+  background: linear-gradient(to right, #4f46e5, #3b82f6);
+}
+
+.modern-table th {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+.modern-table td {
+  vertical-align: middle;
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+
+.recent-actions .action-item {
+  padding: 8px 12px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  transition: all 0.2s;
+}
+
+.recent-actions .action-item:hover {
+  transform: scale(1.02);
+}
+
+.bg-blue-light {
+  background-color: #e0f2fe;
+}

@@ -4,7 +4,7 @@ import axios from "axios";
 import { io } from "socket.io-client";
 import { Modal, Button, Toast, ToastContainer } from "react-bootstrap";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://voixprotegebdd.onrender.com");
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -24,10 +24,10 @@ const Dashboard = () => {
       try {
         let url =
           userInfo.role === "citoyen"
-            ? "http://localhost:5000/api/case/mesdossiers"
+            ? "https://voixprotegebdd.onrender.com/api/case/mesdossiers"
             : userInfo.role === "admin"
-            ? "http://localhost:5000/api/case/all"
-            : "http://localhost:5000/api/case/mescas";
+            ? "https://voixprotegebdd.onrender.com/api/case/all"
+            : "https://voixprotegebdd.onrender.com/api/case/mescas";
 
         const { data } = await axios.get(url, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -96,7 +96,7 @@ const Dashboard = () => {
   const updateStatus = async (caseId, newStatus) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/case/${caseId}/statut`,
+        `https://voixprotegebdd.onrender.com/api/case/${caseId}/statut`,
         { statut: newStatus },
         { headers: { Authorization: `Bearer ${userInfo.token}` } }
       );

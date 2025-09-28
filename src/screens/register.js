@@ -15,7 +15,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
-  const [inputError, setInputError] = useState(""); // Erreur email/phone
+  const [inputError, setInputError] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,28 +23,23 @@ const Register = () => {
   const userRegister = useSelector((state) => state.userRegister);
   const { error, loading, userInfo } = userRegister;
 
+  // Redirection après inscription ou si déjà connecté
   useEffect(() => {
-    if (userInfo) navigate("/HomeScreen");
+    if (userInfo) navigate("/orders"); // page par défaut pour citoyen
   }, [userInfo, navigate]);
 
-  // Validation en temps réel
+  // Validation email ou téléphone en temps réel
   useEffect(() => {
     if (!emailOrPhone) {
       setInputError("");
       return;
     }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{8,15}$/;
 
-    const emailRegex =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const phoneRegex = /^[0-9]{8,15}$/; // Simple validation : 8 à 15 chiffres
-
-    if (emailRegex.test(emailOrPhone)) {
-      setInputError("");
-    } else if (phoneRegex.test(emailOrPhone)) {
-      setInputError("");
-    } else {
-      setInputError("Veuillez entrer un email ou numéro valide");
-    }
+    if (emailRegex.test(emailOrPhone)) setInputError("");
+    else if (phoneRegex.test(emailOrPhone)) setInputError("");
+    else setInputError("Veuillez entrer un email ou numéro valide");
   }, [emailOrPhone]);
 
   const submitHandler = (e) => {
@@ -54,6 +49,8 @@ const Register = () => {
     } else if (inputError) {
       setMessage(inputError);
     } else {
+      // ⚡ Ici, on déclenche l'action register
+      // le rôle citoyen sera automatiquement attribué côté backend
       dispatch(register(name, emailOrPhone, password));
     }
   };
@@ -87,9 +84,7 @@ const Register = () => {
 
           <form onSubmit={submitHandler}>
             <div className="mb-3 input-group">
-              <span className="input-group-text bg-white">
-                <FaUser />
-              </span>
+              <span className="input-group-text bg-white"><FaUser /></span>
               <input
                 className="form-control"
                 placeholder="Nom complet"
@@ -102,11 +97,7 @@ const Register = () => {
 
             <div className="mb-3 input-group">
               <span className="input-group-text bg-white">
-                {emailOrPhone && /^[0-9]+$/.test(emailOrPhone) ? (
-                  <FaPhone />
-                ) : (
-                  <FaEnvelope />
-                )}
+                {emailOrPhone && /^[0-9]+$/.test(emailOrPhone) ? <FaPhone /> : <FaEnvelope />}
               </span>
               <input
                 className="form-control"
@@ -119,9 +110,7 @@ const Register = () => {
             </div>
 
             <div className="mb-3 input-group">
-              <span className="input-group-text bg-white">
-                <FaLock />
-              </span>
+              <span className="input-group-text bg-white"><FaLock /></span>
               <input
                 className="form-control"
                 placeholder="Mot de passe"
@@ -133,9 +122,7 @@ const Register = () => {
             </div>
 
             <div className="mb-3 input-group">
-              <span className="input-group-text bg-white">
-                <FaLock />
-              </span>
+              <span className="input-group-text bg-white"><FaLock /></span>
               <input
                 className="form-control"
                 placeholder="Confirmer mot de passe"
@@ -150,11 +137,7 @@ const Register = () => {
               <button
                 type="submit"
                 className="btn btn-primary"
-                style={{
-                  borderRadius: "12px",
-                  background: "#334155",
-                  border: "none",
-                }}
+                style={{ borderRadius: "12px", background: "#334155", border: "none" }}
               >
                 S'enregistrer
               </button>

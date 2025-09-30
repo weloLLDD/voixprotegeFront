@@ -6,7 +6,7 @@ import { io } from "socket.io-client";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 
-const socket = io("https://voixprotegebdd-mvhx.onrender.com"); // adapter le port selon ton backend
+const socket = io("https://voixbdd.onrender.com"); // adapter le port selon ton backend
 
 const Alerte = () => {
   const userLogin = useSelector((state) => state.userLogin);

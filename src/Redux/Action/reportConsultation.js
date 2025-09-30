@@ -24,7 +24,7 @@ export const getConsultationReport = () => async (dispatch, getState) => {
 
     // Appel backend avec le token
     const { data } = await axios.get(
-      "/api/documents/rapport/consultations",
+      "https://voixprotegebdd-mvhx.onrender.com/api/documents/rapport/consultations",
       config
     );
 

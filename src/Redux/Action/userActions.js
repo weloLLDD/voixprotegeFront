@@ -31,7 +31,7 @@ export const login = (emailOrPhone, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "https://voixprotegebdd.onrender.com/api/users/login",
+      "https://voixprotegebdd-mvhx.onrender.com/api/users/login",
       { emailOrPhone, password },
       config
     );
@@ -80,7 +80,7 @@ export const listUser = () => async (dispatch, getState) => {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     };
 
-    const { data } = await axios.get("https://voixprotegebdd.onrender.com/api/users", config);
+    const { data } = await axios.get("https://voixprotegebdd-mvhx.onrender.com/api/users", config);
     dispatch({ type: USER_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -113,7 +113,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put("https://voixprotegebdd.onrender.com/api/users/profile", user, config);
+    const { data } = await axios.put("https://voixprotegebdd-mvhx.onrender.com/api/users/profile", user, config);
 
     dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
@@ -154,7 +154,7 @@ export const createUser = (user) => async (dispatch, getState) => {
     };
 
     // user.emailOrPhone est utilisé côté backend
-    const { data } = await axios.post("https://voixprotegebdd.onrender.com/api/users/create", user, config);
+    const { data } = await axios.post("https://voixprotegebdd-mvhx.onrender.com/api/users/create", user, config);
 
     dispatch({ type: USER_CREATE_SUCCESS, payload: data });
 
@@ -194,7 +194,7 @@ export const createUser = (user) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      "https://voixprotegebdd.onrender.com/api/users/register",
+      "https://voixprotegebdd-mvhx.onrender.com/api/users/register",
       { name, emailOrPhone, password },
       config
     );

@@ -14,7 +14,7 @@ export const listCases = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get("https://voixprotegebdd.onrender.com/api/case", config);
+    const { data } = await axios.get("https://voixprotegebdd-mvhx.onrender.com/api/case", config);
 
     dispatch({
       type: CASES_SUCCESS,
@@ -47,7 +47,7 @@ export const listMyCases = () => async (dispatch, getState) => {
     };
 
     // Récupérer uniquement les cas assignés à cet agent
-    const { data } = await axios.get(`https://voixprotegebdd.onrender.com/api/case/mescas`, config);
+    const { data } = await axios.get(`https://voixprotegebdd-mvhx.onrender.com/api/case/mescas`, config);
 
     dispatch({
       type: CASE_LIST_MY_SUCCESS,
@@ -77,7 +77,7 @@ export const createCase = (formData) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post("https://voixprotegebdd.onrender.com/api/case", formData, config);
+    const { data } = await axios.post("https://voixprotegebdd-mvhx.onrender.com/api/case", formData, config);
 
     dispatch({ type: CASE_CREATE_SUCCESS, payload: data.case });
   } catch (error) {
@@ -101,7 +101,7 @@ export const getCaseEvolution = (caseId) => async (dispatch, getState) => {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     };
 
-    const { data } = await axios.get(`https://voixprotegebdd.onrender.com/api/case/${caseId}`, config);
+    const { data } = await axios.get(`https://voixprotegebdd-mvhx.onrender.com/api/case/${caseId}`, config);
 
     dispatch({ type: CASE_EVOLUTION_SUCCESS, payload: data });
   } catch (error) {
@@ -131,7 +131,7 @@ export const getCaseEvolution = (caseId) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `https://voixprotegebdd.onrender.com/api/case/${caseId}/evolution`,
+      `https://voixprotegebdd-mvhx.onrender.com/api/case/${caseId}/evolution`,
       evolutionData,
       config
     );
@@ -159,7 +159,7 @@ export const listAllCases = () => async (dispatch, getState) => {
     } = getState();
 
     const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-    const { data } = await axios.get("https://voixprotegebdd.onrender.com/api/case/all", config);
+    const { data } = await axios.get("https://voixprotegebdd-mvhx.onrender.com/api/case/all", config);
 
     dispatch({ type: CASE_LIST_ALL_SUCCESS, payload: data });
   } catch (error) {

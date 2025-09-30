@@ -18,8 +18,8 @@ const AllCases = ({ isAdmin }) => {
 
       try {
         const url = isAdmin
-          ? "https://voixprotegebdd.onrender.com/api/case/all"
-          : "https://voixprotegebdd.onrender.com/api/case/mesdossiers";
+          ? "https://voixprotegebdd-mvhx.onrender.com/api/case/all"
+          : "https://voixprotegebdd-mvhx.onrender.com/api/case/mesdossiers";
         const { data } = await axios.get(url, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
